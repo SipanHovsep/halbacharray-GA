@@ -1,9 +1,25 @@
+
+"""
+@author: tmachtelinckx
+"""
+
 import numpy as np
+import config
 
-def fieldError(shimVector, shared_data, T_target=0.05, homogeneity_weight=0.85, field_strength_weight=0.15):
+def fieldError(shimVector, shared_data):
     """
-    Calculate the Homogeneity and Field strength error values
+    Calculate the homogeneity and field strength error values for a given shim configuration.
 
+    Parameters:
+    - shimVector (array-like): The indices representing the chosen shim configuration.
+    - shared_data (numpy array): A 3D array containing precomputed field data.
+    - T_target (float, optional): The target field strength (default: 0.05).
+    - homogeneity_weight (float, optional): The weight given to homogeneity error (default: 0.85).
+    - field_strength_weight (float, optional): The weight given to field strength error (default: 0.15).
+
+    Returns:
+    - tuple: A single-value tuple containing the total error score, which combines homogeneity 
+      and field strength errors based on the given weights.
     """
     field = np.zeros(np.size(shared_data, 0))
 
@@ -15,10 +31,10 @@ def fieldError(shimVector, shared_data, T_target=0.05, homogeneity_weight=0.85, 
 
     # Field strength error
     mean_field_strength = np.mean(field)
-    field_strength_error = np.abs(mean_field_strength - T_target) * 1e6
+    field_strength_error = np.abs(mean_field_strength - config.T_target) * 1e6
 
     # Combine the two errors into a single fitness score, prioritizing according to weighting
-    total_error = (homogeneity_weight * homogeneity_error) + (field_strength_weight * field_strength_error)
+    total_error = (config.homogeneity_weight * homogeneity_error) + (config.field_strength_weight * field_strength_error)
 
     return (total_error,)
 

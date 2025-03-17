@@ -1,3 +1,7 @@
+"""
+@author: tmachtelinckx
+"""
+
 import os
 import time
 import subprocess

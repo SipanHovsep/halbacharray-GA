@@ -1,20 +1,19 @@
 import numpy as np
 
-
 #------------------------------------RING DIMENSIONS------------------------------------#
 
 # Define your parameters
 InnerBoreDiameter = 160 * 1e-3  # Inner Diameter of the Ring
-OuterBoreDiameter = 220 * 1e-3  # Outer Diameter of the Ring
+OuterBoreDiameter = 250 * 1e-3  # Outer Diameter of the Ring
 magnetSize = 12 * 1e-3          # Length of cube (converted to meters)
 
 
 #-------------------------------VARIABLE RING PARAMETERS--------------------------------#
 
 amountBand = np.array([1,2])                 # Amount of bands within a ring
-bandRadiiGap = np.linspace(0, 0.05, 60)    # Space between Bands
+bandRadiiGap = np.linspace(0, 0.1, 60)    # Space between Bands
 magnetSpace = np.linspace(0, 0.05, 35)     # Space Between Magnets
-bandSep = np.linspace(0.002, 0.05, 60)     # Space between Bore and 1st band
+bandSep = np.linspace(0.002, 0.1, 60)     # Space between Bore and 1st band
 
 
 #--------------------------------RING POSITIONS-----------------------------------------#
@@ -53,16 +52,24 @@ ringPositions = np.linspace(-arrayLength / 2, arrayLength / 2, numRings)
 
 """
 
+#----------------------------- FIELD ERROR PARAMETERS --------------------------------#
+
+# Ensure that homogeneity_weight + field_strength_weight = 1
+
+T_target = 0.05                 # Target field strength in Tesla
+homogeneity_weight = 0.85       # Weight for homogeneity error 
+field_strength_weight = 0.15    # Weight for field strength error
+
 #-----------------------------SIMULATION PARAMETERS-----------------------------------#
 
-resolution = 2                      # Higher values result in lower precision (effective resolution = 1000 / resolution)
-DSV = 0.7 * InnerBoreDiameter       # Diameter of the Spherical Volume, as a % of the inner bore diameter
+resolution = 20                      # Higher values result in lower precision (effective resolution = 1000 / resolution)
+DSV = 0.6 * InnerBoreDiameter       # Diameter of the Spherical Volume, as a % of the inner bore diameter
 simDimensions = (DSV, DSV, DSV)     # 3D dimensions of the simulation space, represented as (x, y, z)
 # GA Parameters
 
-popSim = 1000000                    # Total population size across all islands  
+popSim = 500000                    # Total population size across all islands  
 CXPB, MUTPB = 0.6, 0.3              # Crossover probability and mutation probability
-maxGeneration = 200                 # Maximum number of generations for the genetic algorithm 
+maxGeneration = 150                 # Maximum number of generations for the genetic algorithm 
 NGEN = maxGeneration                # Alias for maxGeneration (used for compatibility in function calls)
 num_islands = 24                    # Number of islands (subpopulations) in the island model, depends on amount of cpus available
 migration_interval = 15             # Number of generations between migrations of individuals between islands  

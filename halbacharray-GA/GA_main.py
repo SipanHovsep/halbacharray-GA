@@ -3,7 +3,7 @@ import numpy as np
 import random
 from deap import base, tools, creator
 import time
-from HallbachRing_Edit_2 import HallbachRing
+from halbachRings import HallbachRing
 import psutil
 import threading
 import config
@@ -11,7 +11,7 @@ import config
 from field_calculations import fieldError, calculate_field_characteristics
 from documentation import save_dataframe_to_excel, save_duplicate_statistics,save_comprehensive_results, save_hof_and_logbook
 from pbs_monitor import get_current_job_id, monitor_pbs_resources
-from Genetic_Functions import island_model
+from genetic_function import island_model
 from initialization import initialize_shared_data, generate_hallbach_rings, create_spherical_mask, extract_symmetric_ring_positions, compute_shim_fields
 
 
@@ -34,7 +34,7 @@ def evaluate(individual):
 
 #------------------------------------DEAP TOOLBOX SETUP-------------------------------------#
 
-def setup_deap_toolbox(num_rings_perm):
+def setup_deap_toolbox(num_rings_perm, num_positions):
     """Sets up the DEAP toolbox for genetic algorithm operations."""
     try:
         creator.create("FitnessMin", base.Fitness, weights=(-1.0,))
@@ -88,7 +88,7 @@ if __name__ == '__main__':
     shared_data = initialize_shared_data(shimFields)
 
     # Set up DEAP toolbox
-    toolbox = setup_deap_toolbox(num_rings_perm)
+    toolbox = setup_deap_toolbox(num_rings_perm, num_positions)
 
     # Start memory monitoring in a separate thread
     memory_log_file = os.path.join(results_folder, "memory_usage.csv")

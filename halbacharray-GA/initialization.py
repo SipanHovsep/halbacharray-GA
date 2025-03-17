@@ -1,3 +1,7 @@
+"""
+@author: tmachtelinckx
+"""
+
 import numpy as np
 import ctypes
 import multiprocessing
@@ -7,6 +11,23 @@ import halbachFields
 
 
 def generate_hallbach_rings(magnetSize, InnerBoreDiameter, OuterBoreDiameter, amountBand, bandRadiiGap, magnetSpace, bandSep,  HallbachRing):
+    """
+    Generates possible Halbach ring configurations based on the provided parameters.
+
+    Parameters:
+    - magnetSize (float): The size (diameter) of each magnet.
+    - InnerBoreDiameter (float): The inner bore diameter where no magnets are placed.
+    - OuterBoreDiameter (float): The outer bore diameter defining the maximum placement area.
+    - amountBand (list): A list of possible numbers of magnet bands.
+    - bandRadiiGap (list): A list of possible gaps between adjacent magnet bands.
+    - magnetSpace (list): A list of possible spacing values between magnets in the same band.
+    - bandSep (list): A list of possible separations between bands.
+    - HallbachRing (class): The class that represents a single Halbach ring.
+
+    Returns:
+    - df (DataFrame): A DataFrame containing valid Halbach ring configurations.
+    - num_rings_perm (int): The number of generated valid Halbach ring permutations.
+    """
 
     # Default Values
     BandRadii = [-1]
@@ -59,7 +80,17 @@ def generate_hallbach_rings(magnetSize, InnerBoreDiameter, OuterBoreDiameter, am
     return df, num_rings_perm
     
 def create_spherical_mask(DSV, resolution):
-    """Create a spherical mask inside a cubic simulation space."""
+    """
+    Creates a spherical mask inside a cubic simulation space.
+
+    Parameters:
+    - DSV (float): Diameter of the spherical volume.
+    - resolution (float): The spatial resolution of the simulation grid.
+
+    Returns:
+    - mask (numpy.ndarray): A binary mask where 1 indicates points inside the sphere.
+    - octantMask (numpy.ndarray): A mask of the first octant of the sphere for symmetry reduction.
+    """
     
     coordinateAxis = np.linspace(-config.simDimensions[0] / 2, config.simDimensions[0] / 2, int(1e3 * config.simDimensions[0] / resolution + 1))
     coords = np.meshgrid(coordinateAxis, coordinateAxis, coordinateAxis)
@@ -76,11 +107,33 @@ def create_spherical_mask(DSV, resolution):
     return mask, octantMask
 
 def extract_symmetric_ring_positions(ringPositions):
-    """Extract only non-negative ring positions."""
+    """
+    Extracts only the non-negative positions of Halbach rings.
+
+    Parameters:
+    - ringPositions (numpy.ndarray): Array containing ring positions.
+
+    Returns:
+    - numpy.ndarray: An array of ring positions that are non-negative.
+    """
     return ringPositions[ringPositions >= 0]
 
 def compute_shim_fields(df, ringPositionsSymmetry, octantMask, simDimensions, magnetSize, resolution):
-    """Compute the shim fields for each ring position and size."""
+    """
+    Computes the shim fields for each ring position and size.
+
+    Parameters:
+    - df (DataFrame): DataFrame containing Halbach ring configurations.
+    - ringPositionsSymmetry (numpy.ndarray): Array of non-negative ring positions.
+    - octantMask (numpy.ndarray): Binary mask for the simulation domain.
+    - simDimensions (tuple): The dimensions of the simulation space.
+    - magnetSize (float): The size of each magnet.
+    - resolution (float): The resolution of the simulation grid.
+
+    Returns:
+    - shimFields (numpy.ndarray): 3D array storing the shim fields for each configuration.
+    - num_positions (int): The number of symmetric ring positions processed.
+    """
     num_positions = np.size(ringPositionsSymmetry)
     num_rings = df.shape[0]
     shimFields = np.zeros((int(np.sum(octantMask)), num_positions, num_rings))

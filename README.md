@@ -25,9 +25,9 @@ The `config.py` file contains all parameters that can be adjusted:
 ### Ring Dimensions
 ```python
 # Inner and outer diameter limits of the rings
-InnerBoreDiameter = 160 * 1e-3  # Inner Diameter of the Ring (mm)
-OuterBoreDiameter = 250 * 1e-3  # Outer Diameter of the Ring (mm)
-magnetSize = 12 * 1e-3          # Length of cube magnets (mm)
+InnerBoreDiameter = 160 * 1e-3  # Inner Diameter of the Ring (m)
+OuterBoreDiameter = 250 * 1e-3  # Outer Diameter of the Ring (m)
+magnetSize = 12 * 1e-3          # Length of cube magnets (m)
 ```
 
 ### Variable Ring Parameters

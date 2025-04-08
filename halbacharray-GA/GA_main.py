@@ -124,7 +124,7 @@ if __name__ == '__main__':
     # Save comprehensive results
     comprehensive_results_file = save_comprehensive_results(
         best_individual, mean_field, homogeneity, 
-        algorithm_time, total_execution_time, config.NGEN, results_folder
+        algorithm_time, total_execution_time, config.NGEN, results_folder, config.ringPositions
     )
 
     # Save Hall of Fame and Logbook

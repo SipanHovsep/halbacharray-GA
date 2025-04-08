@@ -81,7 +81,7 @@ def save_duplicate_statistics(duplicate_stats, results_folder):
     duplicate_df.to_csv(duplicate_file, index=False)
     return duplicate_file
 
-def save_comprehensive_results(best_individual, mean_field, homogeneity, algorithm_time, total_execution_time, NGEN, results_folder):
+def save_comprehensive_results(best_individual, mean_field, homogeneity, algorithm_time, total_execution_time, NGEN, results_folder, ringPositions):
     """Save the comprehensive results to a CSV file."""
     comprehensive_results_file = os.path.join(results_folder, "comprehensive_results.csv")
     results_dict = {
@@ -91,7 +91,8 @@ def save_comprehensive_results(best_individual, mean_field, homogeneity, algorit
         'Mean_Field_Strength': [mean_field],
         'Homogeneity_PPM': [homogeneity],
         'Algorithm_Time_Seconds': [algorithm_time],
-        'Total_Execution_Time_Seconds': [total_execution_time]
+        'Total_Execution_Time_Seconds': [total_execution_time],
+        'Ring_Positions': [';'.join(map(str, ringPositions))]  # Saving as a semicolon-separated string
     }
     pd.DataFrame(results_dict).to_csv(comprehensive_results_file, index=False)
     return comprehensive_results_file

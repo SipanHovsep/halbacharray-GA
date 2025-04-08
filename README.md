@@ -108,7 +108,7 @@ The project includes a PBS scheduler job script (`GA_scheduler.job`) for running
 1. **Job Configuration**:
 ```bash
 #PBS -l select=1:ncpus=24:mpiprocs=24   # Resource allocation: 1 node, 24 CPUs
-#PBS -P HEAL0793                        # Project ID
+#PBS -P ????                       # Project ID
 #PBS -q smp                             # Queue name
 #PBS -l walltime=24:00:00               # Maximum runtime (24 hours)
 #PBS -o /mnt/lustre/users/tmachtelinckx/GA_Island_Model/GA_out.out  # Output file

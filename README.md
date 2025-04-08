@@ -33,9 +33,9 @@ magnetSize = 12 * 1e-3          # Length of cube magnets (m)
 ### Variable Ring Parameters
 ```python
 amountBand = np.array([1,2])                # Number of bands within each ring
-bandRadiiGap = np.linspace(0, 0.1, 60)      # Space between bands (m)
-magnetSpace = np.linspace(0, 0.05, 35)      # Space between magnets (m)
-bandSep = np.linspace(0.002, 0.1, 60)       # Space between bore and 1st band (m)
+bandRadiiGap = np.linspace(0, 0.1, 60)      # Space between bands (mm)
+magnetSpace = np.linspace(0, 0.05, 35)      # Space between magnets (mm)
+bandSep = np.linspace(0.002, 0.1, 60)       # Space between bore and 1st band (mm)
 ```
 
 ### Ring Positions
@@ -79,8 +79,8 @@ Note: `homogeneity_weight + field_strength_weight` should equal 1.0
 ### Simulation Parameters
 ```python
 resolution = 20                      # Spatial resolution (higher values = lower precision)
-DSV = 0.6 * InnerBoreDiameter        # Diameter of Spherical Volume (m)
-simDimensions = (DSV, DSV, DSV)      # 3D dimensions of simulation space (m)
+DSV = 0.6 * InnerBoreDiameter        # Diameter of Spherical Volume (mm)
+simDimensions = (DSV, DSV, DSV)      # 3D dimensions of simulation space (mm)
 ```
 
 ### Genetic Algorithm Parameters

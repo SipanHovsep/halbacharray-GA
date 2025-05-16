@@ -111,8 +111,8 @@ The project includes a PBS scheduler job script (`GA_scheduler.job`) for running
 #PBS -P ????                       # Project ID
 #PBS -q smp                             # Queue name
 #PBS -l walltime=24:00:00               # Maximum runtime (24 hours)
-#PBS -o /mnt/lustre/users/tmachtelinckx/GA_Island_Model/GA_out.out  # Output file
-#PBS -e /mnt/lustre/users/tmachtelinckx/GA_Island_Model/GA_err.err  # Error file
+#PBS -o /mnt/lustre/users/......./GA_Island_Model/GA_out.out  # Output file
+#PBS -e /mnt/lustre/users/......./GA_Island_Model/GA_err.err  # Error file
 ```
 
 2. **Environment Setup**:

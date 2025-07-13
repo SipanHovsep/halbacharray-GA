@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#PBS -1 select=1:ncpus=24:mpiprocs=24
+#PBS -P HEAL0793
+#PBS -q smp
+#PBS -1 walltime=24:00:00
+#PBS -o /mnt/lustre/users/tmachtelinckx/sipan/halbacharray-GA/GA_out.out
+#PBS -e /mnt/lustre/users/tmachtelinckx/sipan/halbacharray-GA/GA_err.err
+
+# Load necessary modules and activate the Conda environment
+module add chpc/python/anaconda/3-2021.11
+
+# Initialize Conda for non-interactive shell
+eval "$(conda shell.bash hook)"
+
+conda activate /home/tmachtelinckx/myenv
+
+# Change to the script's directory
+cd /mnt/lustre/users/tmachtelinckx/sipan/halbacharray-GA/halbacharray-GA
+
+# Run the Python script, passing the unique output directory as an argument
+python GA_main.py
+
+# Deactivate the Conda environment
+conda deactivate

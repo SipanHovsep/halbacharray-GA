@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#PBS -1 select=1:ncpus=24:mpiprocs=24
+#PBS -l select=1:ncpus=24:mpiprocs=24
 #PBS -P HEAL0793
 #PBS -q smp
-#PBS -1 walltime=24:00:00
+#PBS -l walltime=24:00:00
 #PBS -o /mnt/lustre/users/tmachtelinckx/sipan/halbacharray-GA/GA_out.out
 #PBS -e /mnt/lustre/users/tmachtelinckx/sipan/halbacharray-GA/GA_err.err
 

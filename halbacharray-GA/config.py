@@ -3,17 +3,17 @@ import numpy as np
 #------------------------------------RING DIMENSIONS------------------------------------#
 
 # Define your parameters
-InnerBoreDiameter = 120 * 1e-3  # Inner Diameter of the Ring (mm)
-OuterBoreDiameter = 190 * 1e-3  # Outer Diameter of the Ring (mm)
+InnerBoreDiameter = 500 * 1e-3  # Inner Diameter of the Ring (m)
+OuterBoreDiameter = 900 * 1e-3  # Outer Diameter of the Ring (m)
 magnetSize = 12 * 1e-3          # Length of cube (mm)
 
 
 #-------------------------------VARIABLE RING PARAMETERS--------------------------------#
 
-amountBand = np.array([1])               # Amount of bands within a ring
-bandRadiiGap = np.linspace(0, 0.1, 70)     # Space between Bands (mm)
-magnetSpace = np.linspace(0, 0.05, 35)     # Space Between Magnets (mm)
-bandSep = np.linspace(0.002, 0.1, 70)      # Space between Bore and 1st band (mm)
+amountBand = np.array([2,3])               # Amount of bands within a ring
+bandRadiiGap = np.linspace(0, 0.1, 140)     # Space between Bands (mm)
+magnetSpace = np.linspace(0, 0.05, 70)     # Space Between Magnets (mm)
+bandSep = np.linspace(0.002, 0.1, 140)      # Space between Bore and 1st band (mm)
 
 
 #--------------------------------RING POSITIONS-----------------------------------------#
@@ -54,9 +54,9 @@ ringPositions = np.linspace(-arrayLength / 2, arrayLength / 2, numRings)
 
 # Ensure that homogeneity_weight + field_strength_weight = 1
 
-T_target = 0.05                 # Target field strength in Tesla
-homogeneity_weight = 0.9       # Weight for homogeneity error 
-field_strength_weight = 0.1    # Weight for field strength error
+T_target = 0.08                 # Target field strength in Tesla
+homogeneity_weight = 0.8       # Weight for homogeneity error 
+field_strength_weight = 0.2    # Weight for field strength error
 
 #-----------------------------SIMULATION PARAMETERS-----------------------------------#
 

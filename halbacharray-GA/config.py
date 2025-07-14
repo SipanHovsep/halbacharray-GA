@@ -11,9 +11,9 @@ magnetSize = 12 * 1e-3          # Length of cube (mm)
 #-------------------------------VARIABLE RING PARAMETERS--------------------------------#
 
 amountBand = np.array([2,3])               # Amount of bands within a ring
-bandRadiiGap = np.linspace(0, 0.1, 140)     # Space between Bands (mm)
-magnetSpace = np.linspace(0, 0.05, 70)     # Space Between Magnets (mm)
-bandSep = np.linspace(0.002, 0.1, 140)      # Space between Bore and 1st band (mm)
+bandRadiiGap = np.linspace(0, 0.2, 70)     # Space between Bands (mm)
+magnetSpace = np.linspace(0, 0.1, 70)     # Space Between Magnets (mm)
+bandSep = np.linspace(0.002, 0.1, 70)      # Space between Bore and 1st band (mm)
 
 
 #--------------------------------RING POSITIONS-----------------------------------------#
@@ -60,7 +60,7 @@ field_strength_weight = 0.2    # Weight for field strength error
 
 #-----------------------------SIMULATION PARAMETERS-----------------------------------#
 
-resolution = 1                     # Higher values result in lower precision (effective resolution = 1000 / resolution)
+resolution = 50                     # Higher values result in lower precision (effective resolution = 1000 / resolution)
 DSV = 0.5 * InnerBoreDiameter       # Diameter of the Spherical Volume, as a % of the inner bore diameter (mm)
 simDimensions = (DSV, DSV, DSV)     # 3D dimensions of the simulation space, represented as (x, y, z)
 # GA Parameters
